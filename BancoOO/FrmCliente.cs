@@ -12,9 +12,24 @@ namespace BancoOO
 {
     public partial class FrmCliente : Form
     {
+        public List<Cliente> Clientes { get; set; }
+
         public FrmCliente()
         {
             InitializeComponent();
+
+            if (Clientes == null )
+            {
+                Clientes = new List<Cliente>();    
+            }
+
+            
+        }
+
+        public FrmCliente(List<Cliente> clientes)
+        {
+            InitializeComponent();
+            Clientes = clientes;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -23,6 +38,10 @@ namespace BancoOO
             c.Nome = textBox1.Text;
             c.Endereco = textBox2.Text;
             c.Email = textBox3.Text;
+            Clientes.Add(c);
+            this.Close();
+            Form1 form1 = new Form1(Clientes);
+            form1.Show();
         }
     }
 }
